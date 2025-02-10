@@ -1,3 +1,4 @@
+import 'package:construction_application/pending_po/ui/pending_po.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,6 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Pending PO',
       debugShowCheckedModeBanner: false,
+      home: PendingPoList(),
     );
   }
 }
