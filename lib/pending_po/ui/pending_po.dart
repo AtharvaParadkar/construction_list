@@ -1,4 +1,5 @@
 import 'package:construction_application/pending_po/bloc/pending_po_bloc.dart';
+import 'package:construction_application/pending_po/ui/pending_po_list_card.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 
@@ -22,8 +23,11 @@ class _PendingPoListState extends State<PendingPoList> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Pending PO'),
-        backgroundColor: Colors.blueAccent,
+        title: Text(
+          'Pending PO',
+          style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: Color.fromARGB(255, 28, 76, 243),
       ),
       body: BlocBuilder<PendingPoBloc, PendingPoState>(
         bloc: poBloc,
@@ -36,13 +40,12 @@ class _PendingPoListState extends State<PendingPoList> {
             case const (PendingPoLoadedState):
               state as PendingPoLoadedState;
               return ListView.builder(
-                  itemCount: state.pendingPoList.length,
-                  itemBuilder: (context, index) {
-                    final poList = state.pendingPoList[index];
-                    return ListTile(
-                      title: Text(poList.projectName),
-                    );
-                  });
+                itemCount: state.pendingPoList.length,
+                itemBuilder: (context, index) {
+                  final poList = state.pendingPoList[index];
+                  return PendingPoListCard(poList: poList);
+                },
+              );
             case const (PendingPoFailureState):
               state as PendingPoFailureState;
               return Center(child: Text(state.error));
