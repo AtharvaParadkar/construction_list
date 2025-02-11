@@ -28,7 +28,12 @@ class RequisitionListCard extends StatelessWidget {
           children: [
             Row(
               children: [
-                Text(req.supplierName),
+                Text(
+                  req.supplierName,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
                 Spacer(),
                 Container(
                   width: 50,
@@ -61,6 +66,7 @@ class RequisitionListCard extends StatelessWidget {
                   req.projectName,
                   style: TextStyle(
                     fontSize: 13,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
                 Spacer(),
@@ -75,6 +81,7 @@ class RequisitionListCard extends StatelessWidget {
                   req.poDate,
                   style: TextStyle(
                     fontSize: 13,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ],

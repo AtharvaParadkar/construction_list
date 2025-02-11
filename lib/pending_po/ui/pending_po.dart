@@ -26,9 +26,27 @@ class _PendingPoListState extends State<PendingPoList> {
       appBar: AppBar(
         title: Text(
           'Pending PO',
-          style: TextStyle(color: Colors.white),
         ),
-        backgroundColor: Color.fromARGB(255, 28, 76, 243),
+        leading: IconButton(
+          onPressed: () {},
+          icon: Icon(Icons.arrow_back_ios_new),
+          style: IconButton.styleFrom(
+            foregroundColor: Colors.blueAccent,
+            fixedSize: Size(50, 50),
+            iconSize: 25,
+          ),
+        ),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.filter_alt_outlined),
+            style: IconButton.styleFrom(
+              foregroundColor: Colors.blueAccent,
+              fixedSize: Size(50, 50),
+              iconSize: 28,
+            ),
+          ),
+        ],
       ),
       body: BlocBuilder<PendingPoBloc, PendingPoState>(
         bloc: poBloc,
@@ -64,16 +82,16 @@ class _PendingPoListState extends State<PendingPoList> {
           }
         },
       ),
-      floatingActionButton: IconButton(
-        onPressed: () {},
-        color: Colors.white,
-        icon: Icon(Icons.filter_alt),
-        style: IconButton.styleFrom(
-          backgroundColor: Colors.orange,
-          fixedSize: Size(60, 60),
-          iconSize: 30,
-        ),
-      ),
+      // floatingActionButton: IconButton(
+      //   onPressed: () {},
+      //   color: Colors.white,
+      //   icon: Icon(Icons.filter_alt),
+      //   style: IconButton.styleFrom(
+      //     backgroundColor: Colors.orange,
+      //     fixedSize: Size(60, 60),
+      //     iconSize: 30,
+      //   ),
+      // ),
     );
   }
 }
