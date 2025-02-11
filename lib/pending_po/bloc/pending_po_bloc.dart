@@ -19,7 +19,7 @@ class PendingPoBloc extends Bloc<PendingPoEvent, PendingPoState> {
     try {
       emit(PendingPoLoadingState());
 
-      await Future.delayed(Duration(seconds: 2));
+      await Future.delayed(Duration(seconds: 1));
 
       final pendingPO = dummyProjectList;
       emit(PendingPoLoadedState(pendingPO));

@@ -1,5 +1,6 @@
 import 'package:construction_application/pending_po/bloc/pending_po_bloc.dart';
 import 'package:construction_application/pending_po/ui/pending_po_list_card.dart';
+import 'package:construction_application/routes/routes.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 
@@ -43,7 +44,14 @@ class _PendingPoListState extends State<PendingPoList> {
                 itemCount: state.pendingPoList.length,
                 itemBuilder: (context, index) {
                   final poList = state.pendingPoList[index];
-                  return PendingPoListCard(poList: poList);
+                  return InkWell(
+                    onTap: () => Navigator.pushNamed(
+                      context,
+                      RouteConstants.requisitionListScreen,
+                      arguments: poList,
+                    ),
+                    child: PendingPoListCard(poList: poList),
+                  );
                 },
               );
             case const (PendingPoFailureState):
