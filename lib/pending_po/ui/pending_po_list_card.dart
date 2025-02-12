@@ -1,4 +1,5 @@
 import 'package:construction_application/pending_po/model/pending_po_model.dart';
+import 'package:construction_application/utils/color_constants.dart';
 import 'package:flutter/material.dart';
 
 class PendingPoListCard extends StatelessWidget {
@@ -29,9 +30,9 @@ class PendingPoListCard extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  poList.projectId!,
+                  poList.poCode!,
                   style: TextStyle(
-                    color: Colors.teal,
+                    color: CustomColours.projStatusBG,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -47,7 +48,7 @@ class PendingPoListCard extends StatelessWidget {
                     'NP',
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      color: Colors.white,
+                      color: CustomColours.whiteBG,
                     ),
                   ),
                 ),
@@ -55,11 +56,15 @@ class PendingPoListCard extends StatelessWidget {
             ),
             Text(
               'Project Name : ${poList.projectName}',
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: CustomColours.blackTextColor),
             ),
             Text(
               'Supplier Name : ${poList.supplierName}',
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: CustomColours.blackTextColor),
             ),
             Row(
               spacing: 60,
@@ -70,11 +75,16 @@ class PendingPoListCard extends StatelessWidget {
                     Text(
                       'PO Date :',
                       style: TextStyle(
-                        color: Colors.grey,
+                        color: CustomColours.hintTextColor,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    Text(poList.poDate!),
+                    Text(
+                      poList.poDate!,
+                      style: TextStyle(
+                        color: CustomColours.blackTextColor,
+                      ),
+                    ),
                   ],
                 ),
                 Column(
@@ -83,11 +93,16 @@ class PendingPoListCard extends StatelessWidget {
                     Text(
                       'Delivery Date :',
                       style: TextStyle(
-                        color: Colors.grey,
+                        color: CustomColours.hintTextColor,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    Text(poList.deliveryDate!),
+                    Text(
+                      poList.deliveryDate!,
+                      style: TextStyle(
+                        color: CustomColours.blackTextColor,
+                      ),
+                    ),
                   ],
                 ),
               ],

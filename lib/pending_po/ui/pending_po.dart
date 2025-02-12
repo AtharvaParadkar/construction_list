@@ -1,5 +1,6 @@
 import 'package:construction_application/pending_po/bloc/pending_po_bloc.dart';
 import 'package:construction_application/pending_po/ui/pending_po_list_card.dart';
+import 'package:construction_application/utils/color_constants.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 
@@ -25,12 +26,16 @@ class _PendingPoListState extends State<PendingPoList> {
       appBar: AppBar(
         title: Text(
           'Pending PO',
+            style: TextStyle(
+            color: CustomColours.blackTextColor,
+              fontWeight: FontWeight.bold,
+        ),
         ),
         leading: IconButton(
           onPressed: () {},
           icon: Icon(Icons.arrow_back_ios_new),
           style: IconButton.styleFrom(
-            foregroundColor: Colors.blueAccent,
+            foregroundColor: CustomColours.primaryColour,
             fixedSize: Size(50, 50),
             iconSize: 25,
           ),
@@ -40,7 +45,7 @@ class _PendingPoListState extends State<PendingPoList> {
             onPressed: () {},
             icon: Icon(Icons.filter_alt_outlined),
             style: IconButton.styleFrom(
-              foregroundColor: Colors.blueAccent,
+              foregroundColor: CustomColours.primaryColour,
               fixedSize: Size(50, 50),
               iconSize: 28,
             ),
