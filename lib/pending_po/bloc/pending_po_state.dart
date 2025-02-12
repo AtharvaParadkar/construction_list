@@ -10,7 +10,7 @@ final class PendingPoLoadingState extends PendingPoState{}
 final class PendingPoLoadedState extends PendingPoState{
   final List<PendingPoModel> pendingPoList;
 
-  PendingPoLoadedState(this.pendingPoList);
+  PendingPoLoadedState({required this.pendingPoList});
 }
 
 final class PendingPoFailureState extends PendingPoState{

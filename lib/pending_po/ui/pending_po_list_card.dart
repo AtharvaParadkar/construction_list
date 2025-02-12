@@ -29,7 +29,7 @@ class PendingPoListCard extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  poList.projectId,
+                  poList.projectId!,
                   style: TextStyle(
                     color: Colors.teal,
                     fontWeight: FontWeight.bold,
@@ -74,7 +74,7 @@ class PendingPoListCard extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    Text(poList.poDate),
+                    Text(poList.poDate!),
                   ],
                 ),
                 Column(
@@ -87,7 +87,7 @@ class PendingPoListCard extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    Text(poList.deliveryDate),
+                    Text(poList.deliveryDate!),
                   ],
                 ),
               ],
