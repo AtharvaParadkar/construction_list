@@ -1,40 +1,83 @@
 import "dart:async";
-import "dart:convert";
 import "dart:io";
 
 import "package:construction_application/api/api.dart";
+import "package:construction_application/api/api_request.dart";
+import "package:construction_application/api/api_result.dart";
 import "package:construction_application/pending_po/model/pending_po_model.dart";
-import "package:http/http.dart" as http;
+import "package:flutter/material.dart";
 
 class PendingPoApiRepository {
-  Future<List<PendingPoModel>> fetchPendingPo() async {
-    final url = Uri.parse(pendingPoApi);
-    try {
-      final response = await http.get(url);
+  // Method to call pending PO list API.
+  Future<ApiResult<PendingPoModel>> fetchPendingPoList() async {
+    final String accessToken = token;
 
+    final Map<String, String> headers = {
+      'Content-Type': 'application/json',
+      'Authorization': "Bearer $accessToken"
+    };
+
+    final Map<String, dynamic> requestBody = {
+      "companyID": 5,
+      "holdRecall": 0,
+      "loginID": 141,
+      "roleID": 1,
+      "supplierIDList": "",
+      "poFromDate": "2020-05-02",
+      "poToDate": "2025-01-20",
+      "projectIDlist": "",
+      "skip": 0,
+      "limit": 0,
+      "deliveryStatus": ""
+    };
+
+    final response = await ApiRequests().sendPostRequest(
+        headers: headers, url: pendingPoApi, body: requestBody);
+
+    try {
+      // Parse and return the response if successful
+      debugPrint('${response.statusCode}');
       if (response.statusCode == 200) {
-        List<dynamic> data = jsonDecode(response.body);
-        return data.map((e) => PendingPoModel.fromJson(e)).toList();
+        debugPrint("Response: ${response.body}");
+        final jsonString = ApiRequests().returnResponse(response);
+        final model = PendingPoModel.fromJson(jsonString);
+        return ApiResult(data: model, statusCode: response.statusCode);
       } else if (response.statusCode == 400) {
-        throw Exception('Bad request. Please check your input and try again.');
+        return ApiResult(
+            errorMessage: "Bad request. Please check your input and try again.",
+            statusCode: response.statusCode);
       } else if (response.statusCode == 401) {
-        throw Exception('Unauthorized access. Please log in again.');
+        return ApiResult(
+            errorMessage: "Unauthorized access. Please log in again.",
+            statusCode: response.statusCode);
       } else {
-        throw Exception(
-            'Unexpected error occurred. Status code: ${response.statusCode}');
+        return ApiResult(
+          errorMessage:
+              "Unexpected error occurred. Status code: ${response.statusCode}",
+          statusCode: response.statusCode,
+        );
       }
     } on SocketException {
       // Handles network issues
-      throw Exception(
-          'No internet connection. Please check your network and try again.');
+      return ApiResult(
+          errorMessage:
+              "No internet connection. Please check your network and try again.",
+          statusCode: response.statusCode);
     } on TimeoutException {
       // Handle timeout
-      throw Exception('The request has timed out. Please try again later.');
+      return ApiResult(
+          errorMessage: "The request has timed out. Please try again later.",
+          statusCode: response.statusCode);
     } on FormatException {
       // Handle JSON formatting issues
-      throw Exception('Invalid response format. Please contact support.');
-    } catch (error) {
-      throw Exception(error);
+      return ApiResult(
+          errorMessage: "Invalid response format. Please contact support.",
+          statusCode: response.statusCode);
+    } catch (e) {
+      // Catch any other unexpected errors
+      return ApiResult(
+          errorMessage: "An unexpected error occurred: ${e.toString()}",
+          statusCode: response.statusCode);
     }
   }
 }

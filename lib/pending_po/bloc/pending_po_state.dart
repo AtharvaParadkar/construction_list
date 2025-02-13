@@ -5,16 +5,17 @@ sealed class PendingPoState {}
 
 final class PendingPoInitial extends PendingPoState {}
 
-final class PendingPoLoadingState extends PendingPoState{}
+final class PendingPoLoadingState extends PendingPoState {}
 
-final class PendingPoLoadedState extends PendingPoState{
-  final List<PendingPoModel> pendingPoList;
+final class PendingPoSuccessState extends PendingPoState {
+  final PendingPoModel response;
 
-  PendingPoLoadedState({required this.pendingPoList});
+  PendingPoSuccessState({required this.response});
 }
 
-final class PendingPoFailureState extends PendingPoState{
+final class PendingPoFailureState extends PendingPoState {
   final String error;
+  final int statusCode;
 
-  PendingPoFailureState(this.error);
+  PendingPoFailureState({required this.error, required this.statusCode});
 }
