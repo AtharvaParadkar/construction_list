@@ -58,11 +58,11 @@ class _PendingPoListState extends State<PendingPoList> {
         bloc: poBloc,
         builder: (context, state) {
           switch (state.runtimeType) {
-            case PendingPoLoadingState:
+            case const (PendingPoLoadingState):
               return Center(
                 child: CircularProgressIndicator(),
               );
-            case PendingPoSuccessState:
+            case const (PendingPoSuccessState):
               state as PendingPoSuccessState;
               if (state.response.data == null) {
                 _pendingPoList = [];
@@ -83,7 +83,7 @@ class _PendingPoListState extends State<PendingPoList> {
                       textAlign: TextAlign.center,
                       "No List found",
                     ));
-            case PendingPoFailureState:
+            case const (PendingPoFailureState):
               state as PendingPoFailureState;
               return Center(
                   child: Text(
